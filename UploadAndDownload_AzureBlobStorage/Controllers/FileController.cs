@@ -42,7 +42,7 @@ namespace UploadAndDownload_AzureBlobStorage.Controllers
             return Ok("File Uploaded Successfully");
         }
         [HttpPost(nameof(DownloadFile))]
-        public async Task<IActionResult> DownloadFile(string blobName)
+        public async Task<IActionResult> DownloadFile(string fileName)
         {
             CloudBlockBlob blockBlob;
             await using (MemoryStream memoryStream = new MemoryStream())
@@ -51,7 +51,7 @@ namespace UploadAndDownload_AzureBlobStorage.Controllers
                 CloudStorageAccount cloudStorageAccount = CloudStorageAccount.Parse(blobstorageconnection);
                 CloudBlobClient cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
                 CloudBlobContainer cloudBlobContainer = cloudBlobClient.GetContainerReference(_configuration.GetValue<string>("BlobContainerName"));
-                blockBlob = cloudBlobContainer.GetBlockBlobReference(blobName);
+                blockBlob = cloudBlobContainer.GetBlockBlobReference(fileName);
                 await blockBlob.DownloadToStreamAsync(memoryStream);
             }
 
@@ -59,14 +59,14 @@ namespace UploadAndDownload_AzureBlobStorage.Controllers
             return File(blobStream, blockBlob.Properties.ContentType, blockBlob.Name);
         }
         [HttpDelete(nameof(DeleteFile))]
-        public async Task<IActionResult> DeleteFile(string blobName)
+        public async Task<IActionResult> DeleteFile(string fileName)
         {
             string blobstorageconnection = _configuration.GetValue<string>("BlobConnectionString");
             CloudStorageAccount cloudStorageAccount = CloudStorageAccount.Parse(blobstorageconnection);
             CloudBlobClient cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
             string strContainerName = _configuration.GetValue<string>("BlobContainerName");
             CloudBlobContainer cloudBlobContainer = cloudBlobClient.GetContainerReference(strContainerName);
-            var blob = cloudBlobContainer.GetBlobReference(blobName);
+            var blob = cloudBlobContainer.GetBlobReference(fileName);
             await blob.DeleteIfExistsAsync();
             return Ok("File Deleted");
         }
