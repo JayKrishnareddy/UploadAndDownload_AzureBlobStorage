@@ -13,3 +13,7 @@
 If you want to learn more about this Article 👇🏻
 
 [**C# Corner**](https://www.c-sharpcorner.com/article/azure-blob-storage-uploaddownloaddelete-files-using-net-5/ "C# Corner")
+
+[**Medium**](https://jaykrishnareddy.medium.com/azure-blob-storage-upload-download-delete-file-s-using-net-5-0-web-api-978237a6b0e8
+ "Medium")
+
