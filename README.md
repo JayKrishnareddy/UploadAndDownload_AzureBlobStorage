@@ -1,6 +1,6 @@
 ## Azure Blob Storage - Upload/Download/Delete File(s) Using .NET 5 
 
-![Alt Text](https://github.com/JayKrishnareddy/CleanArchitecture/blob/master/1_Tpfkss_hdHNyaaJ_3bBgWQ.png)
+![Alt Text](https://github.com/JayKrishnareddy/UploadAndDownload_AzureBlobStorage/blob/master/maxresdefault.jpg)
 
 ### Let's perform all the basic operations like,
 - Create an Azure storage account and blob container
